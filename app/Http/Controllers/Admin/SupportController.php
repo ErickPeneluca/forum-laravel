@@ -42,7 +42,7 @@ class SupportController extends Controller
 
     // action
     public function store(StoreUpdateSupport $r, Support $support){
-        $data = $r->all();
+        $data = $r->validated();
         $data['status'] = 'a';
 
         $support->create($data);
@@ -63,7 +63,7 @@ class SupportController extends Controller
     }
 
     // edit-action
-    public function update(Request $r, Support $support){
+    public function update(StoreUpdateSupport $r, Support $support){
         $support = $support->find($r->id);
 
         if (!$support) {
